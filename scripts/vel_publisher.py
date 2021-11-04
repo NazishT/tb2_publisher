@@ -10,19 +10,11 @@ class VelocityPublisher():
         # initialize the node 
         rospy.init_node("velocity_publisher", anonymous=True)
         nodename = rospy.get_name()
-        #rospy.loginfo("%s started" % nodename)
+        rospy.loginfo("%s started" % nodename)
         # publisher and subscribers
         self.pub_twist = rospy.Publisher('/swarmbilly/cmd_vel', Twist, queue_size=10)
         self.sub_twist = rospy.Subscriber('/robot2/mobile_base/commands/velocity', Twist, self.get_twist, queue_size=10)
-    
-    # main function 
-    def spin(self):
-        r = rospy.Rate(10)
-        # main loop
-        while not rospy.is_shutdown():
-            self.set_twist()
-            r.sleep()
-    
+
     # get data from turtlebot 
     def get_twist(self, msg):
         self.vx = msg.linear.x
@@ -43,13 +35,10 @@ class VelocityPublisher():
 
 
 
-
-
-
 if __name__ == "__main__":
     try:    
-        vel_pub = VelocityPublisher()
-        vel_pub.spin()  
+        VelocityPublisher()
+        rospy.spin()  
         
     except rospy.ROSInterruptException:
         print("shutting down")
