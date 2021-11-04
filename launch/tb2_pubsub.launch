@@ -1,0 +1,6 @@
+<launch> 
+
+<node type="tb2_subscriber.py"/>
+
+</launch>
+
