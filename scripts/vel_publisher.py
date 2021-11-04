@@ -10,7 +10,7 @@ class VelocityPublisher():
         # initialize the node 
         rospy.init_node("velocity_publisher", anonymous=True)
         nodename = rospy.get_name()
-        rospy.loginfo("%s started" % nodename)
+        #rospy.loginfo("%s started" % nodename)
         # publisher and subscribers
         self.pub_twist = rospy.Publisher('/swarmbilly/cmd_vel', Twist, queue_size=10)
         self.sub_twist = rospy.Subscriber('/robot2/mobile_base/commands/velocity', Twist, self.get_twist, queue_size=10)
